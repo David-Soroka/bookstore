@@ -57,3 +57,6 @@ def book_delete(request, pk):
         return redirect('book_list')
     return render(request, 'books/book_confirm_delete.html', {'book': book})
 
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, 'books/book_detail.html', {'book': book})

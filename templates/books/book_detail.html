@@ -1,0 +1,10 @@
+{% extends 'books/base.html' %}
+{% block content %}
+<h2>{{ book.title }}</h2>
+<p><strong>Author:</strong> {{ book.author.name }}</p>
+<p><strong>Year:</strong> {{ book.publication_year }}</p>
+<p><strong>Genre:</strong> {{ book.genre }}</p>
+<p><strong>Price:</strong> ${{ book.price }}</p>
+<p><strong>Status:</strong> {% if book.is_available %}Available{% else %}Not Available{% endif %}</p>
+<a href="{% url 'book_list' %}" class="btn btn-secondary">Back</a>
+{% endblock %}
