@@ -1,8 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Author, Book
-from .forms import AuthorForm, BookForm
-from .services import get_all_books
 from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+
+from .forms import AuthorForm, BookForm
+from .models import Author, Book
+from .services import get_all_books
+
+
+def home_redirect(request):
+    return redirect('book_list')
 
 # Author views
 def author_list(request):
@@ -39,7 +44,19 @@ def book_list(request):
 def book_create(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        author_name = form.cleaned_data['author_name'].strip()
+        author_birth_year = form.cleaned_data['author_birth_year']
+
+        author, created = Author.objects.get_or_create(
+            name=author_name,
+            defaults={
+                'birth_year': author_birth_year,
+            }
+        )
+
+        book = form.save(commit=False)
+        book.author = author
+        book.save()
         return redirect('book_list')
     return render(request, 'books/book_form.html', {'form': form})
 
@@ -62,5 +79,3 @@ def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render(request, 'books/book_detail.html', {'book': book})
 
-def home_redirect(request):
-    return redirect('book_list')
