@@ -8,8 +8,8 @@ class AuthorForm(forms.ModelForm):
 
 # Форма для книги з ручним введенням автора
 class BookForm(forms.ModelForm):
-    author_name = forms.CharField(label="Ім’я автора")
-    author_birth_year = forms.IntegerField(label="Рік народження автора")
+    author_name = forms.CharField(label="Name author")
+    author_birth_year = forms.IntegerField(label="Author birth year")
 
     class Meta:
         model = Book
