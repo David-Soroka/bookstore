@@ -1,0 +1,7 @@
+{% extends 'books/base.html' %}
+{% block title %}Delete Author{% endblock %}
+{% block content %}
+<h2>Delete Author</h2>
+<p>Are you sure you want to delete "{{ author.name }}"?</p>
+<form method="post">{% csrf_token %}<button class="btn btn-danger">Confirm</button></form>
+{% endblock %}

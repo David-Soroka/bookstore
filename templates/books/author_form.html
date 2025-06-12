@@ -1,0 +1,15 @@
+{% extends 'books/../books/../books/base.html' %}
+{% block title %}Author Form{% endblock %}
+{% block content %}
+<h2>Author Form</h2>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary">Save</button></form>
+{% endblock %}
+
+<!-- author_confirm_delete.html -->
+{% extends 'books/../books/../books/base.html' %}
+{% block title %}Delete Author{% endblock %}
+{% block content %}
+<h2>Delete Author</h2>
+<p>Are you sure you want to delete "{{ author.name }}"?</p>
+<form method="post">{% csrf_token %}<button class="btn btn-danger">Confirm</button></form>
+{% endblock %}
