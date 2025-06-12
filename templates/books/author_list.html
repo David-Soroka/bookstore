@@ -6,7 +6,7 @@
 <ul class="list-group">
     {% for author in authors %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
-        {{ author.name }} ({{ author.country }})
+        {{ author.name }} ({{ author.birth_year }})
         <span>
             <a href="{% url 'author_update' author.id %}" class="btn btn-sm btn-warning">Edit</a>
             <a href="{% url 'author_delete' author.id %}" class="btn btn-sm btn-danger">Delete</a>
