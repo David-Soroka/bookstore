@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Author, Book
 from .forms import AuthorForm, BookForm
 from .services import get_all_books
+from django.shortcuts import redirect
 
 # Author views
 def author_list(request):
@@ -60,3 +61,6 @@ def book_delete(request, pk):
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
     return render(request, 'books/book_detail.html', {'book': book})
+
+def home_redirect(request):
+    return redirect('book_list')

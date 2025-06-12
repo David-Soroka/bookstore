@@ -20,6 +20,7 @@ from books import views           # імпорт модуля views з пото�
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home_redirect, name='home_redirect'),
     path('authors/', views.author_list, name='author_list'),
     path('authors/create/', views.author_create, name='author_create'),
     path('authors/<int:pk>/edit/', views.author_update, name='author_update'),
