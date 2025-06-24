@@ -1,7 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseForbidden
@@ -9,8 +8,8 @@ from .forms import AuthorForm, BookForm, RegisterForm
 from .models import Author, Book, UserProfile
 from .services import get_all_books
 from django.utils.timezone import now
+from django.utils.translation import gettext as _
 import datetime
-
 
 def role_required(roles):
     def decorator(view_func):
@@ -19,9 +18,9 @@ def role_required(roles):
                 return redirect('login')
             try:
                 if request.user.userprofile.role not in roles:
-                    return HttpResponseForbidden("⛔ Доступ заборонено")
+                    return HttpResponseForbidden(_("⛔ Доступ заборонено"))
             except UserProfile.DoesNotExist:
-                return HttpResponseForbidden("⛔ Профіль користувача не знайдено")
+                return HttpResponseForbidden(_("⛔ Профіль користувача не знайдено"))
             return view_func(request, *args, **kwargs)
         return _wrapped_view
     return decorator

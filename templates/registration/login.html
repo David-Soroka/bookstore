@@ -1,12 +1,13 @@
 {% extends 'books/base.html' %}
-{% block title %}🔐 Вхід{% endblock %}
+{% load i18n %}
+{% block title %}🔐 {% trans "Login" %}{% endblock %}
 {% block content %}
-<h2>Увійти до системи</h2>
+<h2>{% trans "Login to the system" %}</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button class="btn btn-primary">Увійти</button>
+  <button class="btn btn-primary">{% trans "Login" %}</button>
 </form>
-<p class="mt-2">Ще не маєш акаунта? <a href="{% url 'register' %}">Зареєструватися</a></p>
-<p><a href="{% url 'password_reset' %}">Забули пароль?</a></p>
+<p class="mt-2">{% trans "Don't have an account?" %} <a href="{% url 'register' %}">{% trans "Register" %}</a></p>
+<p><a href="{% url 'password_reset' %}">{% trans "Forgot your password?" %}</a></p>
 {% endblock %}

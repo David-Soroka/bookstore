@@ -1,11 +1,12 @@
 {% extends 'books/base.html' %}
-{% block title %}📝 Реєстрація{% endblock %}
+{% load i18n %}
+{% block title %}📝 {% trans "Register" %}{% endblock %}
 {% block content %}
-<h2>Реєстрація нового користувача</h2>
+<h2>{% trans "Register a new user" %}</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button class="btn btn-success">Зареєструватися</button>
+  <button class="btn btn-success">{% trans "Register" %}</button>
 </form>
-<p><a href="{% url 'login' %}">Повернутися до входу</a></p>
+<p><a href="{% url 'login' %}">{% trans "Return to login" %}</a></p>
 {% endblock %}

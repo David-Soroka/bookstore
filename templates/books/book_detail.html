@@ -1,15 +1,16 @@
 {% extends 'books/base.html' %}
-{% block title %}Book Details{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Book Details" %}{% endblock %}
 {% block content %}
 <div class="card p-4 shadow-sm">
   <h2>{{ book.title }}</h2>
-  <p><strong>Author:</strong> {{ book.author.name }}</p>
-  <p><strong>Year:</strong> {{ book.publication_year }}</p>
-  <p><strong>Genre:</strong> {{ book.genre }}</p>
-  <p><strong>Price:</strong> ${{ book.price }}</p>
-  <p><strong>Status:</strong> {% if book.is_available %}Available{% else %}Not Available{% endif %}</p>
-  <a href="{% url 'book_update' book.id %}" class="btn btn-warning">Edit</a>
-  <a href="{% url 'book_list' %}" class="btn btn-secondary">Back</a>
+  <p><strong>{% trans "Author" %}:</strong> {{ book.author.name }}</p>
+  <p><strong>{% trans "Year" %}:</strong> {{ book.publication_year }}</p>
+  <p><strong>{% trans "Genre" %}:</strong> {{ book.genre }}</p>
+  <p><strong>{% trans "Price" %}:</strong> ${{ book.price }}</p>
+  <p><strong>{% trans "Status" %}:</strong> {% if book.is_available %}{% trans "Available" %}{% else %}{% trans "Not Available" %}{% endif %}</p>
+  <a href="{% url 'book_update' book.id %}" class="btn btn-warning">{% trans "Edit" %}</a>
+  <a href="{% url 'book_list' %}" class="btn btn-secondary">{% trans "Back" %}</a>
 </div>
 {% endblock %}
 

@@ -1,13 +1,14 @@
 {% extends 'books/base.html' %}
-{% block title %}Confirm Delete{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Confirm Delete" %}{% endblock %}
 {% block content %}
 <div class="card p-4 shadow-sm bg-white">
-  <h3>⚠️ Are you sure?</h3>
-  <p>You are about to delete: <strong>{{ object }}</strong></p>
+  <h3>⚠️ {% trans "Are you sure?" %}</h3>
+  <p>{% trans "You are about to delete:" %} <strong>{{ object }}</strong></p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="javascript:history.back()" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">{% trans "Yes, Delete" %}</button>
+    <a href="javascript:history.back()" class="btn btn-secondary">{% trans "Cancel" %}</a>
   </form>
 </div>
 {% endblock %}

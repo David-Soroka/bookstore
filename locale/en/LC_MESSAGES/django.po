@@ -1,0 +1,313 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-24 19:46+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\books\admin.py:7
+msgid "Bookstore – Admin Panel"
+msgstr ""
+
+#: .\books\admin.py:8 .\templates\books\base.html:12
+msgid "Bookstore"
+msgstr ""
+
+#: .\books\admin.py:9
+msgid "Content Management"
+msgstr ""
+
+#: .\books\admin.py:28
+msgid "Mark as available"
+msgstr ""
+
+#: .\books\admin.py:32
+msgid "Mark as unavailable"
+msgstr ""
+
+#: .\books\decorators.py:11 .\books\views.py:21
+msgid "⛔  Access is denied"
+msgstr ""
+
+#: .\books\forms.py:12 .\books\forms.py:17
+msgid "Author Name"
+msgstr ""
+
+#: .\books\forms.py:13
+msgid "Year of Birth"
+msgstr ""
+
+#: .\books\forms.py:18
+msgid "Author Birth Year"
+msgstr ""
+
+#: .\books\forms.py:24
+msgid "Title"
+msgstr ""
+
+#: .\books\forms.py:25
+msgid "Publication Year"
+msgstr ""
+
+#: .\books\forms.py:26 .\templates\books\book_detail.html:9
+msgid "Genre"
+msgstr ""
+
+#: .\books\forms.py:27 .\templates\books\book_detail.html:10
+msgid "Price"
+msgstr ""
+
+#: .\books\forms.py:28 .\templates\books\book_detail.html:11
+msgid "Available"
+msgstr ""
+
+#: .\books\forms.py:32 .\books\forms.py:39
+msgid "Email"
+msgstr ""
+
+#: .\books\forms.py:38
+msgid "Username"
+msgstr ""
+
+#: .\books\forms.py:40
+msgid "Password"
+msgstr ""
+
+#: .\books\forms.py:41
+msgid "Confirm Password"
+msgstr ""
+
+#: .\books\models.py:27
+msgid "Administrator"
+msgstr ""
+
+#: .\books\models.py:28
+msgid "Manager"
+msgstr ""
+
+#: .\books\models.py:29
+msgid "Regular user"
+msgstr ""
+
+#: .\books\views.py:23
+msgid "⛔ User profile not found"
+msgstr ""
+
+#: .\bookstore\settings.py:118
+msgid "Ukrainian"
+msgstr ""
+
+#: .\bookstore\settings.py:119
+msgid "English"
+msgstr ""
+
+#: .\bookstore\settings.py:120
+msgid "Spanish"
+msgstr ""
+
+#: .\templates\books\author_confirm_delete.html:3
+#: .\templates\books\author_confirm_delete.html:5
+#: .\templates\books\author_form.html:3 .\templates\books\author_form.html:6
+msgid "Author Form"
+msgstr ""
+
+#: .\templates\books\author_confirm_delete.html:6
+#: .\templates\books\author_form.html:11 .\templates\books\book_form.html:9
+#: .\templates\users\edit_user_role.html:15
+msgid "Save"
+msgstr ""
+
+#: .\templates\books\author_form.html:12
+#: .\templates\books\book_confirm_delete.html:11
+#: .\templates\books\book_form.html:10
+msgid "Cancel"
+msgstr ""
+
+#: .\templates\books\author_list.html:3
+msgid "Author List"
+msgstr ""
+
+#: .\templates\books\author_list.html:5 .\templates\books\base.html:16
+msgid "Authors"
+msgstr ""
+
+#: .\templates\books\author_list.html:6
+msgid "Add Author"
+msgstr ""
+
+#: .\templates\books\author_list.html:12 .\templates\books\book_detail.html:12
+#: .\templates\books\book_list.html:15
+msgid "Edit"
+msgstr ""
+
+#: .\templates\books\author_list.html:13 .\templates\books\book_list.html:16
+msgid "Delete"
+msgstr ""
+
+#: .\templates\books\base.html:19 .\templates\books\book_list.html:3
+#: .\templates\books\book_list.html:5
+msgid "Books"
+msgstr ""
+
+#: .\templates\books\book_confirm_delete.html:3
+msgid "Confirm Delete"
+msgstr ""
+
+#: .\templates\books\book_confirm_delete.html:6
+msgid "Are you sure?"
+msgstr ""
+
+#: .\templates\books\book_confirm_delete.html:7
+msgid "You are about to delete:"
+msgstr ""
+
+#: .\templates\books\book_confirm_delete.html:10
+msgid "Yes, Delete"
+msgstr ""
+
+#: .\templates\books\book_detail.html:3
+msgid "Book Details"
+msgstr ""
+
+#: .\templates\books\book_detail.html:7
+msgid "Author"
+msgstr ""
+
+#: .\templates\books\book_detail.html:8
+msgid "Year"
+msgstr ""
+
+#: .\templates\books\book_detail.html:11
+msgid "Status"
+msgstr ""
+
+#: .\templates\books\book_detail.html:11
+msgid "Not Available"
+msgstr ""
+
+#: .\templates\books\book_detail.html:13
+#: .\templates\users\edit_user_role.html:17
+msgid "Back"
+msgstr ""
+
+#: .\templates\books\book_form.html:3 .\templates\books\book_form.html:5
+msgid "Book Form"
+msgstr ""
+
+#: .\templates\books\book_list.html:6
+msgid "Add Book"
+msgstr ""
+
+#: .\templates\books\book_list.html:14
+msgid "Details"
+msgstr ""
+
+#: .\templates\registration\login.html:3 .\templates\registration\login.html:9
+msgid "Login"
+msgstr ""
+
+#: .\templates\registration\login.html:5
+msgid "Login to the system"
+msgstr ""
+
+#: .\templates\registration\login.html:11
+msgid "Don't have an account?"
+msgstr ""
+
+#: .\templates\registration\login.html:11
+#: .\templates\registration\register.html:3
+#: .\templates\registration\register.html:9
+msgid "Register"
+msgstr ""
+
+#: .\templates\registration\login.html:12
+msgid "Forgot your password?"
+msgstr ""
+
+#: .\templates\registration\password_reset_complete.html:3
+msgid "Password Changed"
+msgstr ""
+
+#: .\templates\registration\password_reset_complete.html:5
+msgid "Your password has been successfully changed. You may now"
+msgstr ""
+
+#: .\templates\registration\password_reset_complete.html:5
+msgid "log in"
+msgstr ""
+
+#: .\templates\registration\password_reset_confirm.html:3
+msgid "Set New Password"
+msgstr ""
+
+#: .\templates\registration\password_reset_confirm.html:5
+msgid "Set your new password"
+msgstr ""
+
+#: .\templates\registration\password_reset_confirm.html:9
+msgid "Save New Password"
+msgstr ""
+
+#: .\templates\registration\password_reset_done.html:3
+msgid "Email Sent"
+msgstr ""
+
+#: .\templates\registration\password_reset_done.html:5
+msgid "We've emailed you instructions for setting your password."
+msgstr ""
+
+#: .\templates\registration\password_reset_done.html:6
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with."
+msgstr ""
+
+#: .\templates\registration\password_reset_form.html:3
+msgid "Reset Password"
+msgstr ""
+
+#: .\templates\registration\password_reset_form.html:5
+msgid "Reset your password"
+msgstr ""
+
+#: .\templates\registration\password_reset_form.html:6
+msgid ""
+"Enter your email address below and we'll send you a link to reset your "
+"password."
+msgstr ""
+
+#: .\templates\registration\password_reset_form.html:10
+msgid "Send Reset Link"
+msgstr ""
+
+#: .\templates\registration\register.html:5
+msgid "Register a new user"
+msgstr ""
+
+#: .\templates\registration\register.html:11
+msgid "Return to login"
+msgstr ""
+
+#: .\templates\users\edit_user_role.html:3
+msgid "Edit User Role"
+msgstr ""
+
+#: .\templates\users\edit_user_role.html:6
+msgid "Edit user role:"
+msgstr ""
+
+#: .\templates\users\edit_user_role.html:9
+msgid "Role:"
+msgstr ""

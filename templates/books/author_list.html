@@ -1,15 +1,16 @@
 {% extends 'books/../books/../books/../books/../books/base.html' %}
-{% block title %}Author List{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Author List" %}{% endblock %}
 {% block content %}
-<h2>Authors</h2>
-<a href="{% url 'author_create' %}" class="btn btn-success mb-3">Add Author</a>
+<h2>{% trans "Authors" %}</h2>
+<a href="{% url 'author_create' %}" class="btn btn-success mb-3">{% trans "Add Author" %}</a>
 <ul class="list-group">
     {% for author in authors %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
         {{ author.name }} ({{ author.birth_year }})
         <span>
-            <a href="{% url 'author_update' author.id %}" class="btn btn-sm btn-warning">Edit</a>
-            <a href="{% url 'author_delete' author.id %}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{% url 'author_update' author.id %}" class="btn btn-sm btn-warning">{% trans "Edit" %}</a>
+            <a href="{% url 'author_delete' author.id %}" class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
         </span>
     </li>
     {% endfor %}

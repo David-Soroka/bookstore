@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from django.utils.translation import gettext as _
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -24,9 +24,9 @@ class Book(models.Model):
 
 class UserProfile(models.Model):
     ROLE_CHOICES = (
-        ('admin', 'Адміністратор'),
-        ('manager', 'Менеджер'),
-        ('user', 'Звичайний користувач'),
+        ('admin', _('Адміністратор')),
+        ('manager', _('Менеджер')),
+        ('user', _('Звичайний користувач')),
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -38,5 +38,4 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        from .models import UserProfile
         UserProfile.objects.create(user=instance)
