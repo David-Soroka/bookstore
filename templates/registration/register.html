@@ -1,0 +1,11 @@
+{% extends 'books/base.html' %}
+{% block title %}📝 Реєстрація{% endblock %}
+{% block content %}
+<h2>Реєстрація нового користувача</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-success">Зареєструватися</button>
+</form>
+<p><a href="{% url 'login' %}">Повернутися до входу</a></p>
+{% endblock %}

@@ -1,23 +1,48 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
-
-from .forms import AuthorForm, BookForm
-from .models import Author, Book
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.http import HttpResponseForbidden
+from .forms import AuthorForm, BookForm, RegisterForm
+from .models import Author, Book, UserProfile
 from .services import get_all_books
+from django.utils.timezone import now
+import datetime
 
+
+def role_required(roles):
+    def decorator(view_func):
+        def _wrapped_view(request, *args, **kwargs):
+            if not request.user.is_authenticated:
+                return redirect('login')
+            try:
+                if request.user.userprofile.role not in roles:
+                    return HttpResponseForbidden("⛔ Доступ заборонено")
+            except UserProfile.DoesNotExist:
+                return HttpResponseForbidden("⛔ Профіль користувача не знайдено")
+            return view_func(request, *args, **kwargs)
+        return _wrapped_view
+    return decorator
 
 def home_redirect(request):
-    return redirect('book_list')
+    return redirect('login')  # де у шаблоні буде меню для входу / реєстрації
+
+def logout_view(request):
+    login_time = request.session.get('login_time')
+    if login_time:
+        login_dt = datetime.datetime.fromisoformat(login_time)
+        duration = now() - login_dt
+        print(f'Користувач {request.user.username} був у системі: {duration}')
+        # Можна зберігати в БД або лог-файл тут
+    logout(request)
+    return redirect('login')
 
 
 # --------- Author Views (Class-Based) ---------
 
-class AuthorListView(View):
-    def get(self, request):
-        authors = Author.objects.all()
-        return render(request, 'books/author_list.html', {'authors': authors})
-
-
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class AuthorCreateView(View):
     def get(self, request):
         form = AuthorForm()
@@ -31,6 +56,7 @@ class AuthorCreateView(View):
         return render(request, 'books/author_form.html', {'form': form})
 
 
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class AuthorUpdateView(View):
     def get(self, request, pk):
         author = get_object_or_404(Author, pk=pk)
@@ -46,6 +72,7 @@ class AuthorUpdateView(View):
         return render(request, 'books/author_form.html', {'form': form})
 
 
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class AuthorDeleteView(View):
     def get(self, request, pk):
         author = get_object_or_404(Author, pk=pk)
@@ -57,14 +84,30 @@ class AuthorDeleteView(View):
         return redirect('author_list')
 
 
+class AuthorListView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        authors = Author.objects.all()
+        return render(request, 'books/author_list.html', {'authors': authors})
+
+
 # --------- Book Views (Class-Based) ---------
 
+@method_decorator(login_required, name='dispatch')
 class BookListView(View):
     def get(self, request):
+        # Записуємо час входу для user і manager
+        try:
+            if request.user.userprofile.role in ['user', 'manager']:
+                request.session['login_time'] = str(now())
+        except UserProfile.DoesNotExist:
+            pass  # Якщо профіль відсутній — ігноруємо
+
         books = get_all_books()
         return render(request, 'books/book_list.html', {'books': books})
 
 
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class BookCreateView(View):
     def get(self, request):
         form = BookForm()
@@ -88,6 +131,7 @@ class BookCreateView(View):
         return render(request, 'books/book_form.html', {'form': form})
 
 
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class BookUpdateView(View):
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
@@ -103,6 +147,7 @@ class BookUpdateView(View):
         return render(request, 'books/book_form.html', {'form': form})
 
 
+@method_decorator(role_required(['manager', 'admin']), name='dispatch')
 class BookDeleteView(View):
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
@@ -115,6 +160,21 @@ class BookDeleteView(View):
 
 
 class BookDetailView(View):
+    @method_decorator(login_required)
     def get(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
         return render(request, 'books/book_detail.html', {'book': book})
+
+
+class RegisterView(View):
+    def get(self, request):
+        form = RegisterForm()
+        return render(request, 'registration/register.html', {'form': form})
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('book_list')
+        return render(request, 'registration/register.html', {'form': form})

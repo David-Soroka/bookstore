@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Author, Book
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+from .models import UserProfile
 
 admin.site.site_header = "Bookstore – Адмінпанель"
 admin.site.site_title = "Bookstore"
@@ -32,3 +34,14 @@ class BookAdmin(admin.ModelAdmin):
     @admin.action(description='Позначити як недоступні')
     def mark_as_unavailable(self, request, queryset):
         queryset.update(is_available=False)
+
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+
+class CustomUserAdmin(admin.ModelAdmin):
+    inlines = (UserProfileInline,)
+    list_display = ('username', 'email', 'is_staff')
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

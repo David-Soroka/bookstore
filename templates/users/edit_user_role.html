@@ -1,0 +1,16 @@
+{% extends 'books/base.html' %}
+{% block title %}Редагування ролі{% endblock %}
+{% block content %}
+<h2>Редагування ролі користувача: {{ user_obj.username }}</h2>
+<form method="post">
+  {% csrf_token %}
+  <label>Роль:</label>
+  <select name="role" class="form-select">
+    {% for role in roles %}
+      <option value="{{ role }}" {% if current_role == role %}selected{% endif %}>{{ role|title }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn btn-primary mt-2">Зберегти</button>
+</form>
+<a href="{% url 'user_list' %}" class="btn btn-secondary mt-2">Назад</a>
+{% endblock %}
